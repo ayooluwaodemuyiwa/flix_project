@@ -30,10 +30,10 @@
     [self fetchMovies];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies)
-                   forControlEvents:(UIControlEventValueChanged)];
+                  forControlEvents:(UIControlEventValueChanged)];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
-    // Do any additional setup after loading the view.
+// Do any additional setup after loading the view.
 
 -(void) fetchMovies{
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
@@ -48,9 +48,9 @@
             NSLog(@"%@", dataDictionary);
             self.movies = dataDictionary[@"results"];
             for (NSDictionary *movie in self.movies){
-                NSLog(@"%@", movie[@"title"]);
+                //NSLog(@"%@", movie[@"title"]);
             }
-            [self.tableView reloadData]; 
+            [self.tableView reloadData];
             // TODO: Get the array of movies
             // TODO: Store the movies in a property to use elsewhere
             // TODO: Reload your table view data
@@ -87,20 +87,21 @@
 
 
 
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
-     //UITableViewCell *tappedCell = sender;
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    //UITableViewCell *tappedCell = sender;
     // NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-     UITableViewCell *tappedCell = sender;
-     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-     NSDictionary *movie = self.movies[indexPath.row];
-     DetailsViewController *detailsViewController =[segue destinationViewController];
-     detailsViewController.movie = movie;
-     
- }
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    NSDictionary *movie = self.movies[indexPath.row];
+    DetailsViewController *detailsViewController =[segue destinationViewController];
+    detailsViewController.movie = movie;
+    
+}
 
 @end
+

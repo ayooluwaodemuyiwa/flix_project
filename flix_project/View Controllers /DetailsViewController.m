@@ -8,6 +8,7 @@
 
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+
 @interface DetailsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *backdropView;
